@@ -267,7 +267,7 @@ input:focus ~ .highlight {
 }
 
 .fab {
-    position: absolute;
+    position: fixed;
     top: 85%;
     right: 3%;
     border-radius: 50%;
@@ -281,6 +281,7 @@ input:focus ~ .highlight {
     box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
     cursor: pointer;
     transition: all 0.3s;
+    z-index: 200;
 }
 
 .fab:hover {
@@ -298,7 +299,7 @@ input:focus ~ .highlight {
 
 .dropdown-container {
     min-width: 200px;
-    border-radius: 4px;
+    border-radius: 3px;
     background: #FFFFFF;
     display: block;
     position: fixed;
@@ -307,13 +308,13 @@ input:focus ~ .highlight {
 }
 
 .dropdown-container .dropdown-link:first-child {
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
 }
 
 .dropdown-container .dropdown-link:last-child {
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 .dropdown-container .dropdown-link {
@@ -363,6 +364,50 @@ input:focus ~ .highlight {
 }
 
 .toast .close:hover {
+    text-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
+    color: #DDD;
+}
+
+.modal-container {
+    width: 100%;
+    z-index: 100;
+    height: 100%;
+    background: rgba(255, 87, 34, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.modal-container .modal {
+    width: 48%;
+    position: fixed;
+    left: 25%;
+    padding: 1%;
+    min-height: 300px;
+    background: #FFFFFF;
+    border-radius: 2px;
+    top: 10%;
+    display: none;
+}
+
+.modal .close {
+    position: absolute;
+    right: 2;
+    top: 2;
+    transition: all 0.3s;
+    text-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
+    cursor: pointer;
+    font-size: 35px;
+    color: #F44336;
+}
+
+.modal .close .material-icons {
+    color: inherit !important;
+    font-size: 35px;
+}
+
+.modal .close:hover {
     text-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
     color: #DDD;
 }

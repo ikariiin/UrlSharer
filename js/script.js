@@ -41,13 +41,17 @@ var display = {
         this.DOMObject = DOMObject;
         this.animate("fadeIn");
         DOMObject.show();
+    }, genericRemove: function (DOMObject) {
+        this.DOMObject = DOMObject;
+        this.animate("fadeOut");
+        DOMObject.show();
     }, animate: function (animationName) {
         var Callee = arguments.callee.caller.name;
         var DOMObject = this.DOMObject;
         var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
         DOMObject.addClass("animated " + animationName).one(animationEnd, function () {
             DOMObject.removeClass("animated " + animationName);
-            if(Callee.indexOf("remove") !== -1) {
+            if(Callee.toLowerCase().indexOf("remove") !== -1) {
                 DOMObject.hide();
             } else {
                 DOMObject.show();
@@ -68,6 +72,24 @@ var toast = {
         display.removeRight($(".toast"));
         setTimeout(function() {
             $(".toast").remove();
+        }, 1000);
+    }
+};
+
+var modal = {
+    show: function (modalId) {
+        var $modal = $(modalId);
+        var $modalContainer = $modal.parent();
+        display.genericShow($modalContainer);
+        setTimeout(function () {
+            display.showDown($modal);
+        }, 1000);
+    }, hide: function () {
+        var $modal = $(".modal");
+        var $modalContainer = $modal.parent();
+        display.removeRight($modal);
+        setTimeout(function () {
+            display.genericRemove($modalContainer);
         }, 1000);
     }
 };
@@ -266,3 +288,21 @@ $("[data-dropdown]").on("click", function (e) {
     }
 });
 
+$(".modal .close").on("click", function () {
+    modal.hide();
+});
+
+$("#url").on("change", function () {
+    var urlVal = $(this).val().trim();
+    if(urlVal.length == 0) {
+        return;
+    }
+    if(urlVal.indexOf("//") === -1) {
+        urlVal = "//" + urlVal;
+    }
+    fetch(urlVal).then(function (response) {
+        console.log(response);
+    }).catch(function (ex) {
+        toast.show("There was a problem in the URL you have put.");
+    })
+});

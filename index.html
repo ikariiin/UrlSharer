@@ -34,12 +34,16 @@
             </div>
             <div class="column">
                 <h1>Your shared URLs</h1>
-                <h2>NOT YET COMPLETE</h2>
-                <div class="input-group">
-                    <input type="text" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Dummy input</label>
+                <div class="modal-container">
+                    <div class="modal" id="insert">
+                        <h1>Share an URL system-wide</h1>
+                        <div class="input-group">
+                            <input type="text" id="url" name="url">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Your Url</label>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="column">
@@ -59,6 +63,19 @@
             </div>
         </div>
         <script src="js/script.js"></script>
+        <script>
+            // Yet another toggle
+            var yat = false;
+            $(".fab").on("click", function () {
+                if(yat) {
+                    modal.hide();
+                    yat = false;
+                } else {
+                    modal.show("#insert");
+                    yat = true;
+                }
+            });
+        </script>
     </body>
 </html>
    
